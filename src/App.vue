@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <HelloWorld msg="Welcome to Your Vue.js App0" />
+    <HelloWorld msg="Welcome to Your Vue.js App1" />
     <el-button type="primary">Primary</el-button>
   </div>
 </template>
@@ -11,8 +11,8 @@ import HelloWorld from "./components/HelloWorld.vue";
 export default {
   name: "App",
   components: {
-    HelloWorld,
-  },
+    HelloWorld
+  }
 };
 </script>
 

@@ -2,7 +2,13 @@ const path = require("path");
 const outputPath = path.resolve(__dirname, "dist");
 
 module.exports = {
-  // mode: production,
+  //source Map
+  productionSourceMap: process.env.NODE_ENV === "production" ? false : true,
+  //成果物のファイルにハッシュ値を付加しない設定
+  filenameHashing: false,
+  css: {
+    extract: false, //cssをjsフィルにマージ
+  },
   pages: {
     index: {
       // エントリーポイントの設定
@@ -11,15 +17,19 @@ module.exports = {
       template: "public/index.html",
       // 出力されるファイル名
       filename: "index.html",
-      title: "Index Page",
+      // title: "Index Page",
       // chunks to include on this page, by default includes
       // extracted common chunks and vendor chunks.
-      chunks: ["chunk-vendors", "chunk-common", "index"],
+      // chunks: ["chunk-vendors", "chunk-common", "index"],
     },
   },
   devServer: {
     contentBase: outputPath,
   },
 
+  //venderファイルとユーザファイルのJsを別々にしない設定
+  chainWebpack: (config) => {
+    config.optimization.delete("splitChunks");
+  },
   configureWebpack: {},
 };
